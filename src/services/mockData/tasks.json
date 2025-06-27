@@ -1,0 +1,74 @@
+{
+  "mockTasks": [
+    {
+      "Id": 1,
+      "userId": 1,
+      "title": "Morning meditation",
+      "description": "10 minutes of mindful breathing and gratitude practice",
+      "dueDate": "2024-01-20",
+      "priority": "High",
+      "completed": true,
+      "createdAt": "2024-01-20T06:00:00.000Z"
+    },
+    {
+      "Id": 2,
+      "userId": 1,
+      "title": "Drink 8 glasses of water",
+      "description": "Stay hydrated throughout the day for better energy and focus",
+      "dueDate": "2024-01-20",
+      "priority": "Medium",
+      "completed": false,
+      "createdAt": "2024-01-20T07:30:00.000Z"
+    },
+    {
+      "Id": 3,
+      "userId": 1,
+      "title": "Write in gratitude journal",
+      "description": "List 3 things I'm grateful for today",
+      "dueDate": "2024-01-20",
+      "priority": "Medium",
+      "completed": false,
+      "createdAt": "2024-01-20T08:00:00.000Z"
+    },
+    {
+      "Id": 4,
+      "userId": 1,
+      "title": "30-minute walk",
+      "description": "Fresh air and movement to boost mood and energy",
+      "dueDate": "2024-01-20",
+      "priority": "High",
+      "completed": false,
+      "createdAt": "2024-01-20T09:00:00.000Z"
+    },
+    {
+      "Id": 5,
+      "userId": 1,
+      "title": "Read for 20 minutes",
+      "description": "Continue reading 'The Power of Now' for personal growth",
+      "dueDate": "2024-01-21",
+      "priority": "Low",
+      "completed": false,
+      "createdAt": "2024-01-19T20:00:00.000Z"
+    },
+    {
+      "Id": 6,
+      "userId": 1,
+      "title": "Prepare healthy lunch",
+      "description": "Make a colorful salad with seasonal vegetables",
+      "dueDate": "2024-01-21",
+      "priority": "Medium",
+      "completed": false,
+      "createdAt": "2024-01-19T21:00:00.000Z"
+    },
+    {
+      "Id": 7,
+      "userId": 1,
+      "title": "Call mom",
+      "description": "Check in and share how the week is going",
+      "dueDate": "2024-01-19",
+      "priority": "High",
+      "completed": false,
+      "createdAt": "2024-01-18T16:00:00.000Z"
+    }
+  ]
+}

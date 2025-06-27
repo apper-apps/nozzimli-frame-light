@@ -1,0 +1,84 @@
+{
+  "mockCareContent": [
+    {
+      "Id": 1,
+      "category": "Tips",
+      "title": "5-Minute Morning Mindfulness",
+      "description": "Start your day with intention by practicing this simple mindfulness exercise. Focus on your breath, set positive intentions, and create space for gratitude. This practice helps reduce morning anxiety and sets a peaceful tone for your entire day.",
+      "imageUrl": "/images/mindfulness.jpg",
+      "language": "en"
+    },
+    {
+      "Id": 2,
+      "category": "Tips",
+      "title": "Stress Relief Through Deep Breathing",
+      "description": "When overwhelm strikes, return to your breath. Try the 4-7-8 technique: inhale for 4 counts, hold for 7, exhale for 8. This activates your parasympathetic nervous system, naturally calming your mind and body within minutes.",
+      "imageUrl": "/images/breathing.jpg",
+      "language": "en"
+    },
+    {
+      "Id": 3,
+      "category": "Tips",
+      "title": "Creating Healthy Boundaries",
+      "description": "Boundaries are acts of self-love, not selfishness. Learn to say no with grace, protect your energy, and communicate your needs clearly. Healthy boundaries create space for authentic relationships and personal growth.",
+      "imageUrl": "/images/boundaries.jpg",
+      "language": "en"
+    },
+    {
+      "Id": 4,
+      "category": "Food",
+      "title": "Nourishing Morning Smoothie Bowl",
+      "description": "Fuel your body with this antioxidant-rich smoothie bowl. Blend frozen berries, spinach, banana, and almond milk. Top with chia seeds, granola, and fresh fruit. This colorful bowl provides sustained energy and essential nutrients to power your morning.",
+      "imageUrl": "/images/smoothie-bowl.jpg",
+      "language": "en"
+    },
+    {
+      "Id": 5,
+      "category": "Food",
+      "title": "Mindful Eating Meditation",
+      "description": "Transform mealtime into a mindfulness practice. Eat slowly, savor each bite, and listen to your body's hunger cues. This practice improves digestion, increases satisfaction, and creates a healthier relationship with food.",
+      "imageUrl": "/images/mindful-eating.jpg",
+      "language": "en"
+    },
+    {
+      "Id": 6,
+      "category": "Food",
+      "title": "Hormone-Balancing Meal Plan",
+      "description": "Support your hormonal health with this carefully crafted 7-day meal plan. Includes hormone-supporting foods like leafy greens, healthy fats, and protein-rich options. Each meal is designed to stabilize blood sugar and support overall wellbeing.",
+      "imageUrl": "/images/meal-plan.jpg",
+      "language": "en"
+    },
+    {
+      "Id": 7,
+      "category": "Wellness",
+      "title": "Evening Wind-Down Ritual",
+      "description": "Create a sacred evening routine to signal to your body it's time to rest. Dim lights, practice gentle stretches, sip herbal tea, and write in your gratitude journal. This 30-minute ritual improves sleep quality and promotes deeper relaxation.",
+      "imageUrl": "/images/evening-ritual.jpg",
+      "language": "en"
+    },
+    {
+      "Id": 8,
+      "category": "Wellness",
+      "title": "Self-Massage for Stress Relief",
+      "description": "Give yourself the gift of healing touch with these simple self-massage techniques. Focus on tension points like shoulders, neck, and temples. Use gentle circular motions to release physical stress and promote emotional wellbeing.",
+      "imageUrl": "/images/self-massage.jpg",
+      "language": "en"
+    },
+    {
+      "Id": 9,
+      "category": "Wellness",
+      "title": "Moon Cycle Wellness Routine",
+      "description": "Align your self-care practices with the natural rhythm of the moon cycle. Learn which activities, foods, and intentions work best during each phase. This feminine approach to wellness honors your body's natural fluctuations and energy patterns.",
+      "imageUrl": "/images/moon-cycle.jpg",
+      "language": "en"
+    },
+    {
+      "Id": 10,
+      "category": "Tips",
+      "title": "Digital Detox for Mental Clarity",
+      "description": "Reclaim your mental space with intentional technology breaks. Set specific times for phone-free activities, create device-free zones in your home, and practice being present without the urge to document everything. Your mind will thank you.",
+      "imageUrl": "/images/digital-detox.jpg",
+      "language": "en"
+    }
+  ]
+}

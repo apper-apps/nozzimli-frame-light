@@ -1,0 +1,94 @@
+{
+  "mockAffirmations": [
+    {
+      "Id": 1,
+      "text": "I am worthy of love, happiness, and all the beautiful things life has to offer.",
+      "audioUrl": null,
+      "language": "en"
+    },
+    {
+      "Id": 2,
+      "text": "I trust in my ability to overcome challenges and grow stronger with each experience.",
+      "audioUrl": null,
+      "language": "en"
+    },
+    {
+      "Id": 3,
+      "text": "I choose to focus on what I can control and release what I cannot.",
+      "audioUrl": null,
+      "language": "en"
+    },
+    {
+      "Id": 4,
+      "text": "My inner peace is my superpower, and I cultivate it daily.",
+      "audioUrl": null,
+      "language": "en"
+    },
+    {
+      "Id": 5,
+      "text": "I am grateful for my body and treat it with love and respect.",
+      "audioUrl": null,
+      "language": "en"
+    },
+    {
+      "Id": 6,
+      "text": "I embrace my unique journey and celebrate my progress, no matter how small.",
+      "audioUrl": null,
+      "language": "en"
+    },
+    {
+      "Id": 7,
+      "text": "I radiate confidence and attract positive energy into my life.",
+      "audioUrl": null,
+      "language": "en"
+    },
+    {
+      "Id": 8,
+      "text": "I deserve rest and take time to recharge without guilt.",
+      "audioUrl": null,
+      "language": "en"
+    },
+    {
+      "Id": 9,
+      "text": "I am becoming the best version of myself, one day at a time.",
+      "audioUrl": null,
+      "language": "en"
+    },
+    {
+      "Id": 10,
+      "text": "I trust my intuition and make decisions that align with my highest good.",
+      "audioUrl": null,
+      "language": "en"
+    },
+    {
+      "Id": 11,
+      "text": "أنا أستحق الحب والسعادة وجميع الأشياء الجميلة التي تقدمها الحياة.",
+      "audioUrl": null,
+      "language": "ar"
+    },
+    {
+      "Id": 12,
+      "text": "أثق في قدرتي على التغلب على التحديات والنمو أقوى مع كل تجربة.",
+      "audioUrl": null,
+      "language": "ar"
+    },
+    {
+      "Id": 13,
+      "text": "أختار التركيز على ما يمكنني التحكم فيه وأتخلى عما لا أستطيع.",
+      "audioUrl": null,
+      "language": "ar"
+    },
+    {
+      "Id": 14,
+      "text": "سلامي الداخلي هو قوتي العظمى، وأنا أنميه يومياً.",
+      "audioUrl": null,
+      "language": "ar"
+    },
+    {
+      "Id": 15,
+      "text": "أنا ممتنة لجسدي وأعامله بحب واحترام.",
+      "audioUrl": null,
+      "language": "ar"
+    }
+  ]
+}

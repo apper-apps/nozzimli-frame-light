@@ -1,0 +1,79 @@
+{
+  "mockQuotes": [
+    {
+      "Id": 1,
+      "text": "You are not required to set yourself on fire to keep other people warm.",
+      "author": "Unknown"
+    },
+    {
+      "Id": 2,
+      "text": "Taking care of yourself is not selfish. You can't serve from an empty vessel.",
+      "author": "Eleanor Brownn"
+    },
+    {
+      "Id": 3,
+      "text": "Your relationship with yourself sets the tone for every other relationship you have.",
+      "author": "Robert Holden"
+    },
+    {
+      "Id": 4,
+      "text": "Self-care is giving the world the best of you, instead of what's left of you.",
+      "author": "Katie Reed"
+    },
+    {
+      "Id": 5,
+      "text": "You yourself, as much as anybody in the entire universe, deserve your love and affection.",
+      "author": "Buddha"
+    },
+    {
+      "Id": 6,
+      "text": "Rest when you're weary. Refresh and renew yourself, your body, your mind, your spirit.",
+      "author": "Ralph Marston"
+    },
+    {
+      "Id": 7,
+      "text": "Be yourself. Everyone else is already taken.",
+      "author": "Oscar Wilde"
+    },
+    {
+      "Id": 8,
+      "text": "The groundwork for all happiness is good health.",
+      "author": "Leigh Hunt"
+    },
+    {
+      "Id": 9,
+      "text": "Caring for myself is not self-indulgence, it is self-preservation.",
+      "author": "Audre Lorde"
+    },
+    {
+      "Id": 10,
+      "text": "You are enough just as you are. Each emotion you feel, everything in your life, everything you do or do not do is enough.",
+      "author": "Meghan Markle"
+    },
+    {
+      "Id": 11,
+      "text": "Progress, not perfection, is the goal.",
+      "author": "Unknown"
+    },
+    {
+      "Id": 12,
+      "text": "Your mental health is a priority. Your happiness is essential. Your self-care is a necessity.",
+      "author": "Unknown"
+    },
+    {
+      "Id": 13,
+      "text": "The most powerful relationship you will ever have is the relationship with yourself.",
+      "author": "Steve Maraboli"
+    },
+    {
+      "Id": 14,
+      "text": "Nourishing yourself in a way that helps you blossom in the direction you want to go is attainable, and you are worth the effort.",
+      "author": "Deborah Day"
+    },
+    {
+      "Id": 15,
+      "text": "Self-compassion is simply giving the same kindness to ourselves that we would give to others.",
+      "author": "Christopher Germer"
+    }
+  ]
+}
