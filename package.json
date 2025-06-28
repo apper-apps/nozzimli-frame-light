@@ -23,9 +23,8 @@
     "@stripe/react-stripe-js": "^2.4.0",
     "@stripe/stripe-js": "^2.4.0",
     "workbox-webpack-plugin": "^7.0.0",
-    "vite-plugin-pwa": "^0.16.7"
+"vite-plugin-pwa": "^0.16.7"
   },
-  "devDependencies": {
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
