@@ -9,8 +9,8 @@ import Button from "@/components/atoms/Button";
 import { userService } from "@/services/api/userService";
 import { settingsService } from "@/services/api/settingsService";
 
-// Initialize Stripe (use your publishable key)
-const stripePromise = loadStripe('pk_test_your_publishable_key_here');
+// Initialize Stripe with live publishable key
+const stripePromise = loadStripe('pk_live_51NVKcsIFRMUC72MvUpqTcQra4EiNILLlmAn9YNg6RqZ5aEnQQz0CY2S62e4SGOZ4oGE0kuON1QOfLuYxsxhnKc9x002urwdebN');
 const VIPUpgradeModal = ({ isOpen, onClose, onSuccess, user }) => {
   const [loading, setLoading] = useState(false);
   const [showPayment, setShowPayment] = useState(false);

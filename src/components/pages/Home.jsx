@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { toast } from "react-hot-toast";
 import ApperIcon from "@/components/ApperIcon";
 import Card from "@/components/atoms/Card";
+import VIPUpgradeModal from "@/components/molecules/VIPUpgradeModal";
 import ProgressRing from "@/components/molecules/ProgressRing";
 import QuickActionTile from "@/components/molecules/QuickActionTile";
 import Error from "@/components/ui/Error";
@@ -9,14 +11,14 @@ import Loading from "@/components/ui/Loading";
 import { taskService } from "@/services/api/taskService";
 import { userService } from "@/services/api/userService";
 import { quotesService } from "@/services/api/quotesService";
-import { toast } from "react-hot-toast";
+
 const Home = () => {
-  const [user, setUser] = useState(null);
+const [user, setUser] = useState(null);
   const [todaysTasks, setTodaysTasks] = useState([]);
   const [dailyQuote, setDailyQuote] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [showVIPModal, setShowVIPModal] = useState(false);
   const loadHomeData = async () => {
     try {
       setLoading(true);
@@ -50,7 +52,7 @@ const completedTasks = todaysTasks.filter(task => task.completed).length;
   const completionPercentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
   const overdueTasks = todaysTasks.filter(task => !task.completed && new Date(task.dueDate) < new Date()).length;
 
-const handleTaskComplete = async (taskId) => {
+  const handleTaskComplete = async (taskId) => {
     try {
       const task = todaysTasks.find(t => t.id === taskId);
       if (!task) {
@@ -70,6 +72,12 @@ const handleTaskComplete = async (taskId) => {
     if (hour < 12) return "Good morning";
     if (hour < 17) return "Good afternoon";
     return "Good evening";
+};
+
+  const handleVIPUpgradeSuccess = () => {
+    setShowVIPModal(false);
+    toast.success("Welcome to VIP! 🎉");
+    loadHomeData(); // Refresh user data to reflect VIP status
   };
 
   const quickActions = [
@@ -243,28 +251,42 @@ const handleTaskComplete = async (taskId) => {
           </div>
         </motion.div>
 
-        {/* VIP Status */}
+{/* VIP Status */}
         {user?.role === 'Free' && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                  <ApperIcon name="Crown" size={20} className="text-primary" />
+            <button
+              onClick={() => setShowVIPModal(true)}
+              className="w-full"
+            >
+              <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20 hover:border-primary/40 transition-all cursor-pointer">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                    <ApperIcon name="Crown" size={20} className="text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-gray-900">Upgrade to VIP</h4>
+                    <p className="text-xs text-gray-600">Unlock premium wellness content</p>
+                  </div>
+                  <ApperIcon name="ArrowRight" size={16} className="text-primary" />
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900">Upgrade to VIP</h4>
-                  <p className="text-xs text-gray-600">Unlock premium wellness content</p>
-                </div>
-                <ApperIcon name="ArrowRight" size={16} className="text-primary" />
-              </div>
-            </Card>
+              </Card>
+            </button>
           </motion.div>
         )}
+)}
       </div>
+
+      {/* VIP Upgrade Modal */}
+      <VIPUpgradeModal
+        isOpen={showVIPModal}
+        onClose={() => setShowVIPModal(false)}
+        onSuccess={handleVIPUpgradeSuccess}
+        user={user}
+      />
     </div>
   );
 };
