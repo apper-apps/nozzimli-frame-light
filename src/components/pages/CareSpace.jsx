@@ -8,7 +8,7 @@ import Empty from '@/components/ui/Empty';
 import ApperIcon from '@/components/ApperIcon';
 import { careContentService } from '@/services/api/careContentService';
 import { userService } from '@/services/api/userService';
-
+import { imageService } from '@/services/api/imageService';
 const CareSpace = () => {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -56,17 +56,30 @@ const CareSpace = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-md mx-auto px-4 py-6">
-        {/* Header */}
+{/* Header */}
         <motion.div
-          className="text-center mb-6"
+          className="text-center mb-6 relative"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <ApperIcon name="Heart" size={32} className="text-primary" />
+          {/* Background sanctuary image */}
+          <div className="absolute inset-0 rounded-3xl overflow-hidden">
+            <img
+              src={imageService.getHeaderImage()}
+              alt="Wellness sanctuary"
+              className="w-full h-full object-cover opacity-20"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-secondary/10"></div>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 font-display">CareSpace</h1>
-          <p className="text-gray-600">Your wellness sanctuary</p>
+          
+          {/* Header content */}
+          <div className="relative z-10 py-8">
+            <div className="w-16 h-16 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm border border-white/20">
+              <ApperIcon name="Heart" size={32} className="text-primary" />
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900 font-display">CareSpace</h1>
+            <p className="text-gray-700 font-medium">Your wellness sanctuary</p>
+          </div>
         </motion.div>
 
         {/* Category Tabs */}
@@ -106,12 +119,21 @@ const CareSpace = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <div 
-              className="bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-2xl p-4 cursor-pointer hover:shadow-lg transition-all"
+<div 
+              className="bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-2xl p-4 cursor-pointer hover:shadow-lg transition-all relative overflow-hidden"
               onClick={handleUpgrade}
             >
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+              {/* Premium background image */}
+              <div className="absolute inset-0">
+                <img
+                  src={imageService.getPremiumImage()}
+                  alt="Premium content"
+                  className="w-full h-full object-cover opacity-10"
+                />
+              </div>
+              
+              <div className="flex items-center space-x-3 relative z-10">
+                <div className="w-10 h-10 bg-primary/30 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
                   <ApperIcon name="Crown" size={20} className="text-primary" />
                 </div>
                 <div className="flex-1">
@@ -163,26 +185,48 @@ const CareSpace = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            {/* Daily Affirmation */}
-            <div className="p-4 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl border border-primary/20">
-              <div className="flex items-center space-x-2 mb-3">
-                <ApperIcon name="Sparkles" size={20} className="text-primary" />
-                <h3 className="font-semibold text-gray-900">Daily Affirmation</h3>
+{/* Daily Affirmation */}
+            <div className="p-4 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl border border-primary/20 relative overflow-hidden">
+              {/* Affirmation background */}
+              <div className="absolute inset-0">
+                <img
+                  src={imageService.getAffirmationImage()}
+                  alt="Daily affirmation"
+                  className="w-full h-full object-cover opacity-30"
+                />
               </div>
-              <p className="text-sm text-gray-800 italic font-medium leading-relaxed">
-                "I am worthy of love, peace, and all the beautiful things life has to offer. Today I choose to be gentle with myself and celebrate every small victory." ✨
-              </p>
+              
+              <div className="relative z-10">
+                <div className="flex items-center space-x-2 mb-3">
+                  <ApperIcon name="Sparkles" size={20} className="text-primary" />
+                  <h3 className="font-semibold text-gray-900">Daily Affirmation</h3>
+                </div>
+                <p className="text-sm text-gray-900 italic font-medium leading-relaxed">
+                  "I am worthy of love, peace, and all the beautiful things life has to offer. Today I choose to be gentle with myself and celebrate every small victory." ✨
+                </p>
+              </div>
             </div>
 
-            {/* Wellness Tip */}
-            <div className="p-4 bg-accent/10 rounded-2xl">
-              <div className="flex items-center space-x-2 mb-3">
-                <ApperIcon name="Lightbulb" size={20} className="text-accent" />
-                <h3 className="font-semibold text-gray-900">Daily Wellness Tip</h3>
+{/* Wellness Tip */}
+            <div className="p-4 bg-accent/10 rounded-2xl relative overflow-hidden">
+              {/* Wellness tip background */}
+              <div className="absolute inset-0">
+                <img
+                  src={imageService.getWellnessTipImage()}
+                  alt="Daily wellness tip"
+                  className="w-full h-full object-cover opacity-20"
+                />
               </div>
-              <p className="text-sm text-gray-700">
-                Take 5 minutes today to practice deep breathing. Inhale for 4 counts, hold for 4, exhale for 6. This simple technique can reduce stress and increase mindfulness. 🌸
-              </p>
+              
+              <div className="relative z-10">
+                <div className="flex items-center space-x-2 mb-3">
+                  <ApperIcon name="Lightbulb" size={20} className="text-accent" />
+                  <h3 className="font-semibold text-gray-900">Daily Wellness Tip</h3>
+                </div>
+                <p className="text-sm text-gray-800">
+                  Take 5 minutes today to practice deep breathing. Inhale for 4 counts, hold for 4, exhale for 6. This simple technique can reduce stress and increase mindfulness. 🌸
+                </p>
+              </div>
             </div>
           </motion.div>
         )}

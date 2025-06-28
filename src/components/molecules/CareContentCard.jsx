@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Card from '@/components/atoms/Card';
 import Badge from '@/components/atoms/Badge';
 import Button from '@/components/atoms/Button';
 import ApperIcon from '@/components/ApperIcon';
-
 const CareContentCard = ({ content, isLocked, onUpgrade }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
   return (
     <Card className="relative overflow-hidden" hover={!isLocked} padding="md">
       {isLocked && (
@@ -20,10 +22,31 @@ const CareContentCard = ({ content, isLocked, onUpgrade }) => {
         </div>
       )}
       
-      <div className={isLocked ? 'opacity-30' : ''}>
+<div className={isLocked ? 'opacity-30' : ''}>
         {content.imageUrl && (
-          <div className="w-full h-32 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl mb-4 flex items-center justify-center">
-            <ApperIcon name="Image" size={32} className="text-primary/60" />
+          <div className="w-full h-32 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl mb-4 relative overflow-hidden">
+            {!imageError ? (
+              <>
+                <img
+                  src={content.imageUrl}
+                  alt={content.title}
+                  className={`w-full h-full object-cover transition-opacity duration-300 ${
+                    imageLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  onLoad={() => setImageLoaded(true)}
+                  onError={() => setImageError(true)}
+                />
+                {!imageLoaded && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <ApperIcon name="Image" size={32} className="text-primary/60 animate-pulse" />
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <ApperIcon name="Image" size={32} className="text-primary/60" />
+              </div>
+            )}
           </div>
         )}
         
