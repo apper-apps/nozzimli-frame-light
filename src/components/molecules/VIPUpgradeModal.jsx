@@ -1,47 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { toast } from 'react-toastify';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import Card from '@/components/atoms/Card';
-import Button from '@/components/atoms/Button';
-import ApperIcon from '@/components/ApperIcon';
-import { settingsService } from '@/services/api/settingsService';
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { toast } from "react-toastify";
+import { loadStripe } from "@stripe/stripe-js";
+import { CardElement, Elements, useElements, useStripe } from "@stripe/react-stripe-js";
+import ApperIcon from "@/components/ApperIcon";
+import Card from "@/components/atoms/Card";
+import Button from "@/components/atoms/Button";
+import { userService } from "@/services/api/userService";
+import { settingsService } from "@/services/api/settingsService";
 
 // Initialize Stripe (use your publishable key)
 const stripePromise = loadStripe('pk_test_your_publishable_key_here');
-
 const VIPUpgradeModal = ({ isOpen, onClose, onSuccess, user }) => {
-  const [selectedPlan, setSelectedPlan] = useState('monthly');
-  const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
 
-  useEffect(() => {
-    if (isOpen) {
-      loadPlans();
-    }
-  }, [isOpen]);
-
-  const loadPlans = async () => {
-    try {
-      const plansData = await settingsService.getSubscriptionPlans();
-      setPlans(plansData);
-    } catch (error) {
-      toast.error('Failed to load subscription plans');
-    }
+  // Fixed VIP plan with specific Stripe price ID
+  const vipPlan = {
+    id: 'monthly_vip',
+    name: 'Monthly VIP',
+    description: 'Unlock premium wellness content and features',
+    price: 1.99,
+    period: 'month',
+    priceId: 'price_1Reuv1IFRMUC72MviNgYZq4K'
   };
-
-  const handlePlanSelect = (planId) => {
-    setSelectedPlan(planId);
-  };
-
-  const handleContinueToPayment = () => {
+const handleContinueToPayment = () => {
     setShowPayment(true);
   };
-
-  const selectedPlanData = plans.find(plan => plan.id === selectedPlan);
-
   if (!isOpen) return null;
 
   return (
@@ -84,46 +69,30 @@ const VIPUpgradeModal = ({ isOpen, onClose, onSuccess, user }) => {
               </button>
             </div>
 
-            {!showPayment ? (
+{!showPayment ? (
               <>
-                {/* Subscription Plans */}
+                {/* VIP Plan Display */}
                 <div className="space-y-4 mb-6">
-                  {plans.map((plan) => (
-                    <motion.button
-                      key={plan.id}
-                      onClick={() => handlePlanSelect(plan.id)}
-                      className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
-                        selectedPlan === plan.id
-                          ? 'border-primary bg-primary/5'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center space-x-2">
-                          <h3 className="font-semibold text-gray-900">{plan.name}</h3>
-                          {plan.popular && (
-                            <span className="px-2 py-1 text-xs font-medium bg-primary text-white rounded-full">
-                              Most Popular
-                            </span>
-                          )}
-                        </div>
-                        <div className="text-right">
-                          <div className="text-2xl font-bold text-gray-900">${plan.price}</div>
-                          <div className="text-sm text-gray-600">/{plan.period}</div>
-                        </div>
+                  <motion.div
+                    className="w-full text-left p-4 rounded-xl border-2 border-primary bg-primary/5"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center space-x-2">
+                        <h3 className="font-semibold text-gray-900">{vipPlan.name}</h3>
+                        <span className="px-2 py-1 text-xs font-medium bg-primary text-white rounded-full">
+                          Best Value
+                        </span>
                       </div>
-                      {plan.savings && (
-                        <div className="text-sm text-green-600 font-medium mb-2">
-                          Save ${plan.savings} per year
-                        </div>
-                      )}
-                      <p className="text-sm text-gray-600">{plan.description}</p>
-                    </motion.button>
-                  ))}
+                      <div className="text-right">
+                        <div className="text-2xl font-bold text-gray-900">${vipPlan.price}</div>
+                        <div className="text-sm text-gray-600">/{vipPlan.period}</div>
+                      </div>
+                    </div>
+                    <p className="text-sm text-gray-600">{vipPlan.description}</p>
+                  </motion.div>
                 </div>
-
                 {/* Benefits */}
                 <div className="mb-6">
                   <h3 className="font-semibold text-gray-900 mb-3">VIP Benefits</h3>
@@ -146,14 +115,12 @@ const VIPUpgradeModal = ({ isOpen, onClose, onSuccess, user }) => {
                 </div>
 
                 {/* Continue Button */}
-                <Button
+<Button
                   onClick={handleContinueToPayment}
                   className="w-full"
-                  disabled={!selectedPlan}
                 >
                   Continue to Payment
                 </Button>
-
                 {/* Terms */}
                 <p className="text-xs text-gray-500 text-center mt-4">
                   By continuing, you agree to our Terms of Service and Privacy Policy. 
@@ -161,9 +128,9 @@ const VIPUpgradeModal = ({ isOpen, onClose, onSuccess, user }) => {
                 </p>
               </>
             ) : (
-              <Elements stripe={stripePromise}>
+<Elements stripe={stripePromise}>
                 <PaymentForm
-                  plan={selectedPlanData}
+                  plan={vipPlan}
                   user={user}
                   onSuccess={onSuccess}
                   onBack={() => setShowPayment(false)}
@@ -211,14 +178,17 @@ const PaymentForm = ({ plan, user, onSuccess, onBack, loading, setLoading }) => 
         setError(paymentError.message);
         setLoading(false);
         return;
-      }
+}
 
-      // Process the upgrade
+      // Process the upgrade with Stripe price ID
       await settingsService.processVIPUpgrade({
-        planId: plan.id,
+        priceId: plan.priceId,
         paymentMethodId: paymentMethod.id,
         userId: user?.Id
       });
+
+      // Update user to VIP status
+      await userService.upgradeToVIP();
 
       toast.success('Payment successful! Welcome to VIP! 🎉');
       onSuccess();
@@ -229,7 +199,6 @@ const PaymentForm = ({ plan, user, onSuccess, onBack, loading, setLoading }) => 
       setLoading(false);
     }
   };
-
   const cardElementOptions = {
     style: {
       base: {

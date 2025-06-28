@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import VIPUpgradeModal from "@/components/molecules/VIPUpgradeModal";
 import ApperIcon from "@/components/ApperIcon";
@@ -10,6 +11,7 @@ import Loading from "@/components/ui/Loading";
 import { userService } from "@/services/api/userService";
 import { settingsService } from "@/services/api/settingsService";
 const Settings = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
 const [settings, setSettings] = useState({
     themeColor: '#F4A6CD',
@@ -58,10 +60,12 @@ const handleUpgradeToVIP = () => {
     setShowVIPModal(true);
   };
 
-  const handleVIPUpgradeSuccess = async () => {
+const handleVIPUpgradeSuccess = async () => {
     setShowVIPModal(false);
     await loadData(); // Refresh user data
     toast.success("🎉 Welcome to VIP! Your premium wellness journey begins now!");
+    // Navigate to VIP features page
+    navigate('/vip-features');
   };
   const handleDeleteAccount = () => {
     if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {

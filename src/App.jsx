@@ -7,7 +7,7 @@ import Tasks from '@/components/pages/Tasks';
 import CareSpace from '@/components/pages/CareSpace';
 import Affirmations from '@/components/pages/Affirmations';
 import Settings from '@/components/pages/Settings';
-
+import VIPFeatures from '@/components/pages/VIPFeatures';
 function App() {
   return (
     <div dir="ltr" className="min-h-screen bg-background">
@@ -17,9 +17,10 @@ function App() {
             <Route index element={<Navigate to="/home" replace />} />
             <Route path="home" element={<Home />} />
             <Route path="tasks" element={<Tasks />} />
-            <Route path="carespace" element={<CareSpace />} />
+<Route path="carespace" element={<CareSpace />} />
             <Route path="affirmations" element={<Affirmations />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="vip-features" element={<VIPFeatures />} />
           </Route>
         </Routes>
         <ToastContainer

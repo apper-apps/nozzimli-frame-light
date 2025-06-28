@@ -11,27 +11,15 @@ const userSettings = {
   voiceVolume: 0.8
 };
 
-// Subscription plans data
-const subscriptionPlans = [
-  {
-    id: 'monthly',
-    name: 'Monthly VIP',
-    description: 'Perfect for trying out premium features',
-    price: 9.99,
-    period: 'month',
-    popular: false
-  },
-  {
-    id: 'annual',
-    name: 'Annual VIP',
-    description: 'Best value for long-term wellness journey',
-    price: 99.99,
-    period: 'year',
-    savings: 19.89,
-    popular: true
-  }
-];
-
+// VIP subscription plan with specific Stripe price ID
+const vipSubscriptionPlan = {
+  id: 'monthly_vip',
+  name: 'Monthly VIP',
+  description: 'Unlock premium wellness content and features',
+  price: 1.99,
+  period: 'month',
+  priceId: 'price_1Reuv1IFRMUC72MviNgYZq4K'
+};
 export const settingsService = {
   async getUserSettings() {
     await delay(200);
@@ -56,30 +44,35 @@ export const settingsService = {
     return { ...userSettings };
   },
 
-  async getSubscriptionPlans() {
+async getSubscriptionPlans() {
     await delay(200);
-    return [...subscriptionPlans];
+    return [vipSubscriptionPlan];
   },
-
-  async processVIPUpgrade({ planId, paymentMethodId, userId }) {
+async processVIPUpgrade({ priceId, paymentMethodId, userId }) {
     await delay(1500); // Simulate payment processing time
+    
+    // Validate the specific price ID
+    if (priceId !== 'price_1Reuv1IFRMUC72MviNgYZq4K') {
+      throw new Error('Invalid price ID for VIP subscription');
+    }
     
     // Simulate payment success/failure (90% success rate)
     if (Math.random() < 0.9) {
-      // Simulate successful upgrade
+      // Simulate successful upgrade with Stripe price ID
       return {
         success: true,
         subscriptionId: `sub_${Date.now()}`,
-        planId,
+        priceId,
         userId,
         status: 'active',
-        nextBillingDate: new Date(Date.now() + (planId === 'monthly' ? 30 : 365) * 24 * 60 * 60 * 1000)
+        amount: 199, // $1.99 in cents
+        currency: 'usd',
+        nextBillingDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 days from now
       };
     } else {
       throw new Error('Payment failed. Please check your card details and try again.');
     }
   },
-
   async cancelSubscription(subscriptionId) {
     await delay(500);
     return {
