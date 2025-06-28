@@ -15,7 +15,7 @@ export const userService = {
     return { ...user };
   },
 
-  async updateProfile(userData) {
+async updateProfile(userData) {
     await delay(400);
     const userIndex = mockUsers.findIndex(u => u.Id === CURRENT_USER_ID);
     if (userIndex === -1) {
@@ -23,6 +23,20 @@ export const userService = {
     }
     
     mockUsers[userIndex] = { ...mockUsers[userIndex], ...userData };
+    return { ...mockUsers[userIndex] };
+  },
+
+  async updateVoiceSettings(voiceSettings) {
+    await delay(300);
+    const userIndex = mockUsers.findIndex(u => u.Id === CURRENT_USER_ID);
+    if (userIndex === -1) {
+      throw new Error('User not found');
+    }
+    
+    mockUsers[userIndex] = { 
+      ...mockUsers[userIndex], 
+      voiceSettings: { ...mockUsers[userIndex].voiceSettings, ...voiceSettings }
+    };
     return { ...mockUsers[userIndex] };
   },
 

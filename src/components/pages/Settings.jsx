@@ -11,11 +11,14 @@ import { userService } from "@/services/api/userService";
 import { settingsService } from "@/services/api/settingsService";
 const Settings = () => {
   const [user, setUser] = useState(null);
-  const [settings, setSettings] = useState({
+const [settings, setSettings] = useState({
     themeColor: '#F4A6CD',
     language: 'en',
-    fontSize: 'medium'
-});
+    fontSize: 'medium',
+    voiceAlerts: true,
+    voiceSpeed: 1.0,
+    voiceVolume: 0.8
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showVIPModal, setShowVIPModal] = useState(false);
@@ -240,12 +243,74 @@ const handleUpgradeToVIP = () => {
             </div>
           </Card>
         </motion.div>
+{/* Voice Alerts Settings */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+        >
+          <Card>
+            <h3 className="font-semibold text-gray-900 mb-4">Voice Alerts</h3>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <ApperIcon name="Volume2" size={16} />
+                  <span className="text-gray-700">Enable Voice Alerts</span>
+                </div>
+                <button
+                  onClick={() => handleSettingChange('voiceAlerts', !settings.voiceAlerts)}
+                  className={`w-12 h-6 rounded-full transition-colors ${
+                    settings.voiceAlerts ? 'bg-primary' : 'bg-gray-300'
+                  }`}
+                >
+                  <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform ${
+                    settings.voiceAlerts ? 'translate-x-6' : 'translate-x-0.5'
+                  }`} />
+                </button>
+              </div>
+              
+              {settings.voiceAlerts && (
+                <>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Voice Speed: {settings.voiceSpeed}x
+                    </label>
+                    <input
+                      type="range"
+                      min="0.5"
+                      max="2"
+                      step="0.1"
+                      value={settings.voiceSpeed}
+                      onChange={(e) => handleSettingChange('voiceSpeed', parseFloat(e.target.value))}
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Volume: {Math.round(settings.voiceVolume * 100)}%
+                    </label>
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.1"
+                      value={settings.voiceVolume}
+                      onChange={(e) => handleSettingChange('voiceVolume', parseFloat(e.target.value))}
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+          </Card>
+        </motion.div>
 
         {/* Account Actions */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.7 }}
         >
           <Card>
             <h3 className="font-semibold text-gray-900 mb-4">Account</h3>
@@ -280,16 +345,16 @@ const handleUpgradeToVIP = () => {
           </Card>
         </motion.div>
 
-        {/* App Info */}
+{/* App Info */}
         <motion.div
           className="text-center text-sm text-gray-500 py-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
+          transition={{ delay: 0.8 }}
         >
           <p>Nozzimli v1.0.0</p>
           <p className="mt-1">Made with 💖 for your wellness journey</p>
-</motion.div>
+        </motion.div>
       </div>
 
       {/* VIP Upgrade Modal */}

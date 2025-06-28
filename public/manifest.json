@@ -1,0 +1,36 @@
+{
+  "name": "Nozzimli - Self-Care & Daily Organization",
+  "short_name": "Nozzimli",
+  "description": "Your personal wellness companion for self-care and daily organization",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F1EB",
+  "theme_color": "#F4A6CD",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "375x812",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["health", "lifestyle", "productivity"],
+  "lang": "en",
+  "dir": "ltr"
+}

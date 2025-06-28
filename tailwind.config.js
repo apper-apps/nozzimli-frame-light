@@ -6,16 +6,16 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        primary: '#F4A6CD', // Soft Pink
-        secondary: '#A8C8EC', // Soft Blue
+colors: {
+        primary: '#F4A6CD', // Light Pink
+        secondary: '#A8C8EC', // Soft Blue  
         accent: '#8FA68E', // Muted Green
         surface: '#FFFFFF', // White
         background: '#F5F1EB', // Warm Beige
-        success: '#8FA68E',
-        warning: '#F4C89B',
-        error: '#E88B8B',
-        info: '#A8C8EC',
+        success: '#8FA68E', // Muted Green
+        warning: '#F4C89B', // Soft Orange
+        error: '#E88B8B', // Soft Red
+        info: '#A8C8EC', // Soft Blue
       },
       fontFamily: {
         'display': ['Poppins', 'sans-serif'],

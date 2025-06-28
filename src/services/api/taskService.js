@@ -25,6 +25,13 @@ export const taskService = {
     ).map(task => ({ ...task }));
   },
 
+async getByCategory(category) {
+    await delay(250);
+    return mockTasks.filter(task => 
+      task.category === category
+    ).map(task => ({ ...task }));
+  },
+
   async create(taskData) {
     await delay(400);
     const newTask = {
@@ -34,7 +41,9 @@ export const taskService = {
       description: taskData.description || '',
       dueDate: taskData.dueDate,
       priority: taskData.priority,
+      category: taskData.category || 'General',
       completed: false,
+      voiceReminder: taskData.voiceReminder || false,
       createdAt: new Date().toISOString()
     };
     

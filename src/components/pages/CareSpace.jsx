@@ -155,21 +155,59 @@ const CareSpace = () => {
           )}
         </motion.div>
 
-        {/* Wellness Tips */}
+{/* Daily Affirmations Section */}
         {activeCategory === 'Tips' && (
           <motion.div
-            className="mt-8 p-4 bg-accent/10 rounded-2xl"
+            className="mt-8 space-y-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <div className="flex items-center space-x-2 mb-3">
-              <ApperIcon name="Lightbulb" size={20} className="text-accent" />
-              <h3 className="font-semibold text-gray-900">Daily Wellness Tip</h3>
+            {/* Daily Affirmation */}
+            <div className="p-4 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl border border-primary/20">
+              <div className="flex items-center space-x-2 mb-3">
+                <ApperIcon name="Sparkles" size={20} className="text-primary" />
+                <h3 className="font-semibold text-gray-900">Daily Affirmation</h3>
+              </div>
+              <p className="text-sm text-gray-800 italic font-medium leading-relaxed">
+                "I am worthy of love, peace, and all the beautiful things life has to offer. Today I choose to be gentle with myself and celebrate every small victory." ✨
+              </p>
             </div>
-            <p className="text-sm text-gray-700">
-              Take 5 minutes today to practice deep breathing. Inhale for 4 counts, hold for 4, exhale for 6. This simple technique can reduce stress and increase mindfulness. 🌸
+
+            {/* Wellness Tip */}
+            <div className="p-4 bg-accent/10 rounded-2xl">
+              <div className="flex items-center space-x-2 mb-3">
+                <ApperIcon name="Lightbulb" size={20} className="text-accent" />
+                <h3 className="font-semibold text-gray-900">Daily Wellness Tip</h3>
+              </div>
+              <p className="text-sm text-gray-700">
+                Take 5 minutes today to practice deep breathing. Inhale for 4 counts, hold for 4, exhale for 6. This simple technique can reduce stress and increase mindfulness. 🌸
+              </p>
+            </div>
+          </motion.div>
+        )}
+
+        {/* VIP Content Showcase */}
+        {activeCategory !== 'Tips' && user?.role === 'Free' && (
+          <motion.div
+            className="mt-8 p-6 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl border border-primary/10 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <ApperIcon name="Lock" size={32} className="text-primary" />
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">VIP Content Locked</h3>
+            <p className="text-gray-600 text-sm mb-4">
+              Unlock premium {activeCategory.toLowerCase()} content and enhance your wellness journey
             </p>
+            <button
+              onClick={handleUpgrade}
+              className="bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full font-medium text-sm hover:shadow-lg transition-all"
+            >
+              Upgrade to VIP ✨
+            </button>
           </motion.div>
         )}
       </div>

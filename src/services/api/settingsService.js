@@ -5,7 +5,10 @@ const userSettings = {
   themeColor: '#F4A6CD',
   language: 'en',
   fontSize: 'medium',
-  notifications: true
+  notifications: true,
+  voiceAlerts: true,
+  voiceSpeed: 1.0,
+  voiceVolume: 0.8
 };
 
 // Subscription plans data
