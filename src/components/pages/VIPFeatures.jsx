@@ -2,20 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useAuth } from '@/contexts/AuthProvider';
 import ApperIcon from '@/components/ApperIcon';
 import Card from '@/components/atoms/Card';
 import Button from '@/components/atoms/Button';
 import Loading from '@/components/ui/Loading';
 import Error from '@/components/ui/Error';
-import { userService } from '@/services/api/userService';
 
 const VIPFeatures = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { user, isVIP, refreshUser } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
+useEffect(() => {
     loadUserData();
   }, []);
 
@@ -23,17 +23,17 @@ const VIPFeatures = () => {
     try {
       setLoading(true);
       setError(null);
-      const userData = await userService.getCurrentUser();
-      setUser(userData);
       
-      // Redirect if not VIP
-      if (userData.role !== 'VIP') {
+      if (!isVIP()) {
         toast.warning('VIP membership required to access this page');
         navigate('/settings');
         return;
       }
+      
+      await refreshUser();
     } catch (err) {
       setError(err.message);
+      toast.error('Failed to load VIP features');
     } finally {
       setLoading(false);
     }

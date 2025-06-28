@@ -42,10 +42,10 @@ const Login = () => {
     }));
   };
 
-  const fillAdminCredentials = () => {
+const fillAdminCredentials = () => {
     setFormData({
       email: 'mustafa.kaakour@gmail.com',
-      password: '1234@@'
+      password: '12345678@@'
     });
     toast.info('Admin credentials filled in');
   };
@@ -137,10 +137,10 @@ const Login = () => {
         >
           <Card className="bg-blue-50 border-blue-200">
             <div className="flex items-start space-x-3">
-              <ApperIcon name="Info" size={16} className="text-blue-600 mt-0.5" />
+<ApperIcon name="Info" size={16} className="text-blue-600 mt-0.5" />
               <div className="text-sm text-blue-800">
                 <p className="font-medium mb-1">Demo Accounts:</p>
-                <p>Admin: mustafa.kaakour@gmail.com / 1234@@</p>
+                <p>Admin: mustafa.kaakour@gmail.com / 12345678@@</p>
                 <p>User: jane.smith@example.com / password456</p>
               </div>
             </div>
