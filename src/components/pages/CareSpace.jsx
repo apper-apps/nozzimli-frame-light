@@ -16,13 +16,13 @@ const CareSpace = () => {
   const [user, setUser] = useState(null);
   const [activeCategory, setActiveCategory] = useState('Tips');
 
-  const loadData = async () => {
+const loadData = async () => {
     try {
       setLoading(true);
       setError(null);
       
       const [contentData, userData] = await Promise.all([
-        careContentService.getAllContent(),
+        careContentService.getAll(),
         userService.getCurrentUser()
       ]);
       
