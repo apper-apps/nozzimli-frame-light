@@ -1,33 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import CareContentCard from '@/components/molecules/CareContentCard';
-import Loading from '@/components/ui/Loading';
-import Error from '@/components/ui/Error';
-import Empty from '@/components/ui/Empty';
-import ApperIcon from '@/components/ApperIcon';
-import { careContentService } from '@/services/api/careContentService';
-import { userService } from '@/services/api/userService';
-import { imageService } from '@/services/api/imageService';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
+import CareContentCard from "@/components/molecules/CareContentCard";
+import Error from "@/components/ui/Error";
+import Empty from "@/components/ui/Empty";
+import Loading from "@/components/ui/Loading";
+import { careContentService } from "@/services/api/careContentService";
+import { userService } from "@/services/api/userService";
+import { imageService } from "@/services/api/imageService";
 const CareSpace = () => {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [activeCategory, setActiveCategory] = useState('Tips');
   const [user, setUser] = useState(null);
+  const [activeCategory, setActiveCategory] = useState('Tips');
 
   const loadData = async () => {
     try {
       setLoading(true);
       setError(null);
+      
       const [contentData, userData] = await Promise.all([
-        careContentService.getAll(),
+        careContentService.getAllContent(),
         userService.getCurrentUser()
       ]);
-      setContent(contentData);
+      
+      setContent(contentData || []);
       setUser(userData);
     } catch (err) {
-      setError(err.message);
+      console.error('Error loading data:', err);
+      setError(err.message || 'Failed to load data');
     } finally {
       setLoading(false);
     }
@@ -41,15 +44,14 @@ const CareSpace = () => {
     toast.info("✨ Upgrade to VIP to unlock premium wellness content!");
   };
 
-  const categories = [
+const categories = [
     { key: 'Tips', label: 'Mental Health Tips', icon: 'Brain', available: true },
-    { key: 'Food', label: 'Nutrition Plans', icon: 'Apple', available: user?.role === 'VIP' },
-    { key: 'Wellness', label: 'Wellness Routines', icon: 'Activity', available: user?.role === 'VIP' }
+    { key: 'Food', label: 'Nutrition Plans', icon: 'Apple', available: user?.role === 'Admin' || user?.role === 'VIP' },
+    { key: 'Wellness', label: 'Wellness Routines', icon: 'Activity', available: user?.role === 'Admin' || user?.role === 'VIP' }
   ];
 
   const filteredContent = content.filter(item => item.category === activeCategory);
   const isContentLocked = user?.role !== 'VIP' && activeCategory !== 'Tips';
-
   if (loading) return <Loading />;
   if (error) return <Error message={error} onRetry={loadData} />;
 
