@@ -21,10 +21,9 @@
     "react-redux": "9.2.0",
     "react-router-dom": "6.15.0",
     "react-toastify": "11.0.5",
-    "@stripe/react-stripe-js": "^2.4.0",
+"@stripe/react-stripe-js": "^2.4.0",
 "@stripe/stripe-js": "^2.4.0",
-    "workbox-webpack-plugin": "^7.0.0",
-    "vite-plugin-pwa": "^0.20.5"
+    "vite-plugin-pwa": "^0.21.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
