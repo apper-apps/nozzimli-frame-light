@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import Card from '@/components/atoms/Card';
-import Button from '@/components/atoms/Button';
-import Loading from '@/components/ui/Loading';
-import Error from '@/components/ui/Error';
-import ApperIcon from '@/components/ApperIcon';
-import { userService } from '@/services/api/userService';
-import { settingsService } from '@/services/api/settingsService';
-
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import VIPUpgradeModal from "@/components/molecules/VIPUpgradeModal";
+import ApperIcon from "@/components/ApperIcon";
+import Card from "@/components/atoms/Card";
+import Button from "@/components/atoms/Button";
+import Error from "@/components/ui/Error";
+import Loading from "@/components/ui/Loading";
+import { userService } from "@/services/api/userService";
+import { settingsService } from "@/services/api/settingsService";
 const Settings = () => {
   const [user, setUser] = useState(null);
   const [settings, setSettings] = useState({
     themeColor: '#F4A6CD',
     language: 'en',
     fontSize: 'medium'
-  });
+});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [showVIPModal, setShowVIPModal] = useState(false);
   const loadData = async () => {
     try {
       setLoading(true);
@@ -51,10 +51,15 @@ const Settings = () => {
     }
   };
 
-  const handleUpgradeToVIP = () => {
-    toast.info("💎 VIP upgrade feature coming soon! Get ready for premium wellness content.");
+const handleUpgradeToVIP = () => {
+    setShowVIPModal(true);
   };
 
+  const handleVIPUpgradeSuccess = async () => {
+    setShowVIPModal(false);
+    await loadData(); // Refresh user data
+    toast.success("🎉 Welcome to VIP! Your premium wellness journey begins now!");
+  };
   const handleDeleteAccount = () => {
     if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
       toast.error("Account deletion feature will be implemented with backend integration.");
@@ -284,8 +289,16 @@ const Settings = () => {
         >
           <p>Nozzimli v1.0.0</p>
           <p className="mt-1">Made with 💖 for your wellness journey</p>
-        </motion.div>
+</motion.div>
       </div>
+
+      {/* VIP Upgrade Modal */}
+      <VIPUpgradeModal
+        isOpen={showVIPModal}
+        onClose={() => setShowVIPModal(false)}
+        onSuccess={handleVIPUpgradeSuccess}
+        user={user}
+      />
     </div>
   );
 };
