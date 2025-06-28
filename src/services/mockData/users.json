@@ -1,31 +1,95 @@
-{
-  "mockUsers": [
-    {
-      "Id": 1,
-      "name": "Sarah",
-      "email": "sarah@example.com",
-      "password": "hashedpassword123",
-      "role": "Free",
+[
+  {
+    "Id": 1,
+    "name": "Mustafa Kaakour",
+    "email": "mustafa.kaakour@gmail.com",
+    "password": "1234@@",
+    "role": "Admin",
+    "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+    "joinDate": "2024-01-15",
+    "lastActive": "2024-12-19T10:30:00Z",
+    "preferences": {
+      "theme": "light",
       "language": "en",
-      "createdAt": "2024-01-15T08:00:00.000Z"
+      "notifications": true
     },
-    {
-      "Id": 2,
-      "name": "Layla",
-      "email": "layla@example.com",
-      "password": "hashedpassword456",
-      "role": "VIP",
-      "language": "ar",
-      "createdAt": "2024-01-10T10:30:00.000Z"
+    "voiceSettings": {
+      "enabled": true,
+      "speed": 1.0,
+      "volume": 0.8
     },
-    {
-      "Id": 3,
-      "name": "Emma",
-      "email": "emma@example.com",
-      "password": "hashedpassword789",
-      "role": "VIP",
-      "language": "en",
-      "createdAt": "2024-01-05T14:15:00.000Z"
+    "privacySettings": {
+      "shareAnalytics": true,
+      "shareUsageData": false,
+      "allowMarketing": false,
+      "dataRetention": "1year"
+    },
+    "stats": {
+      "tasksCompleted": 147,
+      "streakDays": 12,
+      "totalSessions": 89
     }
-  ]
-}
+  },
+  {
+    "Id": 2,
+    "name": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "password": "password456",
+    "role": "VIP",
+    "avatar": "https://images.unsplash.com/photo-1494790108755-2616b332d5e7?w=100&h=100&fit=crop&crop=face",
+    "joinDate": "2024-02-20",
+    "lastActive": "2024-12-19T08:15:00Z",
+    "preferences": {
+      "theme": "light",
+      "language": "en",
+      "notifications": true
+    },
+    "voiceSettings": {
+      "enabled": true,
+      "speed": 1.2,
+      "volume": 0.7
+    },
+    "privacySettings": {
+      "shareAnalytics": false,
+      "shareUsageData": true,
+      "allowMarketing": true,
+      "dataRetention": "2years"
+    },
+    "stats": {
+      "tasksCompleted": 89,
+      "streakDays": 7,
+      "totalSessions": 156
+    }
+  },
+  {
+    "Id": 3,
+    "name": "Ahmed Hassan",
+    "email": "ahmed.hassan@example.com",
+    "password": "secure789",
+    "role": "Free",
+    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+    "joinDate": "2024-03-10",
+    "lastActive": "2024-12-18T20:45:00Z",
+    "preferences": {
+      "theme": "light",
+      "language": "ar",
+      "notifications": false
+    },
+    "voiceSettings": {
+      "enabled": false,
+      "speed": 1.0,
+      "volume": 0.5
+    },
+    "privacySettings": {
+      "shareAnalytics": true,
+      "shareUsageData": false,
+      "allowMarketing": false,
+      "dataRetention": "6months"
+    },
+    "stats": {
+      "tasksCompleted": 34,
+      "streakDays": 3,
+      "totalSessions": 45
+    }
+  }
+]
