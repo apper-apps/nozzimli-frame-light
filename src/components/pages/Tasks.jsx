@@ -92,10 +92,10 @@ const Tasks = () => {
 
   const handleEdit = (task) => {
     setEditingTask(task);
-    setFormData({
+setFormData({
       title: task.title,
       description: task.description,
-      dueDate: task.dueDate,
+      dueDate: task.due_date,
       priority: task.priority
     });
     setShowAddForm(true);

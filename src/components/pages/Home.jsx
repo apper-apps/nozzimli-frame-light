@@ -167,9 +167,9 @@ const completedTasks = todaysTasks.filter(task => task.completed).length;
                   <h4 className="text-sm font-medium text-gray-700">Today's Tasks</h4>
                   <div className="max-h-32 overflow-y-auto space-y-1">
 {todaysTasks.slice(0, 3).map((task) => (
-                      <div key={task.id} className="flex items-center space-x-2 p-2 bg-gray-50 rounded-lg">
+                      <div key={task.Id} className="flex items-center space-x-2 p-2 bg-gray-50 rounded-lg">
                         <button
-                          onClick={() => handleTaskComplete(task.id)}
+                          onClick={() => handleTaskComplete(task.Id)}
                           className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${
                             task.completed 
                               ? 'bg-accent border-accent text-white' 
